@@ -80,7 +80,7 @@
  }
  function Wanders()
 	{ 		
-		wayPoint.x = Random.Range (-10, 10);//, 0.85f, Random.Range(0, 65);
-		wayPoint.z = Random.Range (-10, 10);
-		wayPoint.y = 0f;
+		wayPoint.x = Random.Range (0, 30);//, 0.85f, Random.Range(0, 65);
+		wayPoint.z = Random.Range (0, 30);
+		wayPoint.y = 0.5f;
 	}
