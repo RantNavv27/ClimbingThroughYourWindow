@@ -7,9 +7,27 @@ public class GenerateObjects : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		for (int x = 0; x < 20; x++) {
-			Instantiate(Objects[x],new Vector3(Random.Range(1,30),0.5f,Random.Range(1,30)), Quaternion.identity);
-		}
+			GameObject item = Instantiate(Objects[x],new Vector3(Random.Range(0,60),0.5f,Random.Range(0,60)), Quaternion.identity) as GameObject;
+
+			bool isOverlapped = false;
+			Bounds bounds = item.GetComponent<Renderer>().bounds;
+			Collider[] cols = Physics.OverlapSphere(item.transform.position, bounds.extents.magnitude);
+			foreach(Collider col in cols) {
+				if (col.gameObject == item) {
+					continue; 
+				}
+				if (bounds.Intersects(col.gameObject.GetComponent<Renderer>().bounds)) {
+					isOverlapped = true;
+					break;
+				}
+			}
+			if (isOverlapped) {
+				Destroy (item);
+				Debug.Log ("test");
+			}
+
 	}
+}
 
 	// Update is called once per frame
 	void Update () {

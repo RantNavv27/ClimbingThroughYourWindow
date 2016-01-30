@@ -17,15 +17,15 @@
  {
      
      // the directional vector to the target
-     	if(Vector3.Distance(player.position, thisTransform.position) < 10) 
+  /*   	if(Vector3.Distance(player.position, thisTransform.position) < 10) 
      {
      		dir = (transform.position - player.position).normalized;
      		//transform.Rotate(0,randomNumber,0);
 
-	 } else {
+	 } else {*/
 	 dir = (wayPoint - transform.position).normalized;
 	 randomNumber = Random.Range(-5,5);
-	 }
+	 //}
      var hit : RaycastHit;
      
      // check for forward raycast
@@ -82,12 +82,14 @@
      
      //position
      transform.position += transform.forward * (speed * Time.deltaTime); // 20 is speed
+     transform.position.y = 0;
+	transform.position = new Vector3(Mathf.Clamp(transform.position.x, 0.0F, 60.0F), 0, Mathf.Clamp(transform.position.z, 0.0F, 60.0F));
 
      
  }
  function Wanders()
 	{ 		
-		wayPoint.x = Random.Range (0, 30);//, 0.85f, Random.Range(0, 65);
-		wayPoint.z = Random.Range (0, 30);
+		wayPoint.x = Random.Range (0, 60);//, 0.85f, Random.Range(0, 65);
+		wayPoint.z = Random.Range (0, 60);
 		wayPoint.y = 0.5f;
 	}
