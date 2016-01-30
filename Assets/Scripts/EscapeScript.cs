@@ -24,10 +24,8 @@ public class EscapeScript : MonoBehaviour {
 
 		if(Vector3.Distance(player.position, thisTransform.position) < minDistance) {
 
-			Vector3 direction = thisTransform.position - player.position;
-			direction.Normalize();
-			direction.y = 0.5f;
-			thisTransform.position = Vector3.MoveTowards(thisTransform.position, direction * minDistance, Time.deltaTime * runSpeed);
+			Vector3 dir = transform.position - player.position;
+			transform.Translate(dir * runSpeed * Time.deltaTime);
 		}
 	}
 }

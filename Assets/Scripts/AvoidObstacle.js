@@ -1,25 +1,31 @@
-﻿ // Avoid Obstacle Script
- // ---------------------
-
- public var player : GameObject;
+﻿ public var player : Transform;
+ var thisTransform : Transform;
+ var randomNumber : float;
  var speed : float = 10.0;
  var wayPoint : Vector3;
  private var dir : Vector3;
  private var dirFull : Vector3;
- 
- // ----
 
  function Start () 
  {
 		Wanders();
+		thisTransform = this.transform;
+		player = GameObject.FindGameObjectWithTag("Player").transform;
  }
  
  function FixedUpdate()
  {
-     // -- Obstacle Avoidance Tutorial --
      
      // the directional vector to the target
-     dir = (wayPoint - transform.position).normalized;
+     	if(Vector3.Distance(player.position, thisTransform.position) < 10) 
+     {
+     		dir = (transform.position - player.position).normalized;
+     		//transform.Rotate(0,randomNumber,0);
+
+	 } else {
+	 dir = (wayPoint - transform.position).normalized;
+	 randomNumber = Random.Range(-5,5);
+	 }
      var hit : RaycastHit;
      
      // check for forward raycast
@@ -35,8 +41,8 @@
      }
      
      // more raycasts    
-     var leftRay = transform.position + Vector3(-0.6, 0, 0);
-     var rightRay = transform.position + Vector3(0.6, 0, 0);
+     var leftRay = transform.position + Vector3(-0.125f, 0, 0);
+     var rightRay = transform.position + Vector3(0.125f, 0, 0);
      
      // check for leftRay raycast
      if (Physics.Raycast(leftRay, transform.forward, hit, 10)) // 20 is raycast distance
@@ -62,8 +68,6 @@
 
      }
      
-     // --
-     
      // Movement
 		//transform.position = transform.forward(transform.position, wayPoint, speed*Time.deltaTime);
 		if((transform.position - wayPoint).magnitude < 5)
@@ -74,12 +78,11 @@
      var rot = Quaternion.LookRotation (dir);
          
      //print ("rot : " + rot);
-     transform.rotation = Quaternion.Slerp (transform.rotation, rot, Time.deltaTime * 1.5f);
+    transform.rotation = Quaternion.Slerp (transform.rotation, rot, Time.deltaTime * 1.5f);
      
      //position
      transform.position += transform.forward * (speed * Time.deltaTime); // 20 is speed
-     
-     // -- end tutorial --
+
      
  }
  function Wanders()

@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
 	if (Input.GetKey (KeyCode.A)) left = -0.3f;
 	if (Input.GetKey (KeyCode.D)) right = 0.3f;
 
-	forward = Mathf.Clamp (forward,0, 10);
+	forward = Mathf.Clamp (forward,0, 12);
 	back = Mathf.Clamp (back,-7, 0);
 	left = Mathf.Clamp (left,-0.3f, 0f);
 	right = Mathf.Clamp (right,0, 0.3f);
