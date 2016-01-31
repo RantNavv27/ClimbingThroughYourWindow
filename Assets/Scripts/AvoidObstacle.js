@@ -9,6 +9,7 @@
  private var dirFull : Vector3;
 
  var caught : boolean;
+// var sacrifced : boolean:
 
  function Start () 
  {
@@ -20,7 +21,7 @@
 
  function Update ()
  {
- 		if (caught == true) 
+ 		if (player.GetComponent("Player").grabbed == true && player.GetComponent("Player").currentSacrifice == this.gameObject) 
 		{
 			this.transform.position = new Vector3 (player.transform.position.x, 6, player.transform.position.z + 2.5f);
 			this.transform.rotation = Quaternion.Euler(Vector3(-90,player.transform.rotation.y,0));
@@ -39,7 +40,7 @@
      		//transform.Rotate(0,randomNumber,0);
 
 	 } else {*/
-	 if(caught == false)
+	 if(player.GetComponent("Player").currentSacrifice != this.gameObject)
 	 {
 	 dir = (wayPoint - transform.position).normalized;
 	 randomNumber = Random.Range(-5,5);
@@ -114,10 +115,11 @@
 
  function OnCollisionEnter (col: Collision) 
   {
-  		if (col.gameObject.tag == "Player" && player.GetComponent("Player").grabbed == false) 
+  		if (col.gameObject.tag == "Player" && player.GetComponent("Player").grabbed == false && player.GetComponent("Player").currentSacrifice != this.gameObject) 
   		{
-			caught = true;
+			//caught = true;
 			player.GetComponent("Player").grabbed = true;
 			player.GetComponent("Player").currentSacrifice = this.gameObject;
+			this.transform.GetComponent(Animator).enabled = !enabled;
 		} 
   }

@@ -9,9 +9,17 @@ public class Player : MonoBehaviour
 	float left;
 	float count = 0;
 
+	bool sacrifced;
+
 	GameObject currentSacrifice;
+	public GameObject altar;
 
 	bool grabbed = false;
+
+	void Start ()
+	{
+		//altar = GameObject.FindGameObjectsWithTag("Altar") as GameObject;
+	}
 
 	void Update ()
 	{
@@ -47,10 +55,19 @@ public class Player : MonoBehaviour
 	{
 		if (col.gameObject.tag == "Altar" & grabbed == true) 
 		{
+			//sacrifced = true;
 			grabbed = false;
-			Destroy (currentSacrifice);
+			currentSacrifice.transform.position = new Vector3 (altar.transform.position.x + 2, 2, altar.transform.position.z);
+			currentSacrifice.transform.rotation = Quaternion.Euler(-90,90,0);
+			Invoke ("SacrificeDeath", 2);
+
+			//Destroy (currentSacrifice);
 			count++;
 			GameObject.Find ("/Canvas/Score").GetComponent<UnityEngine.UI.Text> ().text = "Score:" + count;
 		}
+	}
+	void SacrificeDeath ()
+	{
+		Destroy (currentSacrifice);
 	}
 }
