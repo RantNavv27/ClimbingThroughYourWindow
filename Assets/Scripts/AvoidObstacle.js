@@ -60,7 +60,7 @@
          {
              Debug.DrawLine (transform.position, hit.point, Color.white);
              
-             dir += hit.normal * 20; // 20 is force to repel by
+             dir += hit.normal * 50; // 20 is force to repel by
          }
 
      }
@@ -76,7 +76,7 @@
          {
              Debug.DrawLine (leftRay, hit.point, Color.red);
              
-             dir += hit.normal * 20; // 20 is force to repel by
+             dir += hit.normal * 50; // 20 is force to repel by
          }
 
      }
@@ -88,7 +88,7 @@
          {
              Debug.DrawLine (rightRay, hit.point, Color.green);
              
-             dir += hit.normal * 20; // 20 is force to repel by
+             dir += hit.normal * 50; // 20 is force to repel by
          }
 
      }

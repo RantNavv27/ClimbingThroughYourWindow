@@ -7,7 +7,7 @@ public class GenerateObjects : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		for (int x = 0; x < 20; x++) {
-			GameObject item = Instantiate(Objects[x],new Vector3(Random.Range(0,60),0.5f,Random.Range(0,60)), Quaternion.identity) as GameObject;
+			GameObject item = Instantiate(Objects[x],new Vector3(Random.Range(0,60),0f,Random.Range(0,60)), Quaternion.Euler(-90, 0, 0)) as GameObject;
 
 			bool isOverlapped = false;
 			Bounds bounds = item.GetComponent<Renderer>().bounds;
@@ -23,7 +23,7 @@ public class GenerateObjects : MonoBehaviour {
 			}
 			if (isOverlapped) {
 				//Destroy (item);
-				item.transform.position = new Vector3(Random.Range(5,55),0.5f,Random.Range(5,55));
+				item.transform.position = new Vector3(Random.Range(5,55),0f,Random.Range(5,55));
 				Debug.Log ("test");
 			}
 
