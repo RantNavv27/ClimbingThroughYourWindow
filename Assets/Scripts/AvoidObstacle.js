@@ -121,7 +121,7 @@
 
  function OnCollisionEnter (col: Collision) 
   {
-  		if (col.gameObject.tag == "Player" && player.GetComponent("Player").grabbed == false && player.GetComponent("Player").currentSacrifice != this.gameObject) 
+  		if (col.gameObject.tag == "Player" && player.GetComponent("Player").grabbed == false && player.GetComponent("Player").currentSacrifice == null) 
   		{
 			//caught = true;
 			player.GetComponent("Player").grabbed = true;

@@ -47,7 +47,7 @@ public class Player : MonoBehaviour
 	transform.Rotate (0, left * back, 0);
 	transform.Rotate (0, right * back, 0);
 
-	transform.position = new Vector3(Mathf.Clamp(transform.position.x, 0.0F, 60.0F), 0, Mathf.Clamp(transform.position.z, 0.0F, 80.0F));
+	transform.position = new Vector3(Mathf.Clamp(transform.position.x, 0.0F, 60.0F), 0, Mathf.Clamp(transform.position.z, 0.0F, 70.0F));
 
 	}
 
