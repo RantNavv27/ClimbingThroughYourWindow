@@ -41,6 +41,12 @@ ModelImporter:
     100066: mixamorig:Spine1
     100068: mixamorig:Spine2
     100070: Object002
+    100072: Box001
+    100074: Box003
+    100076: Object001
+    100078: Plane005
+    100080: Plane008
+    100082: Plane009
     400000: Box002
     400002: //RootNode
     400004: mixamorig:Head
@@ -77,12 +83,26 @@ ModelImporter:
     400066: mixamorig:Spine1
     400068: mixamorig:Spine2
     400070: Object002
+    400072: Box001
+    400074: Box003
+    400076: Object001
+    400078: Plane005
+    400080: Plane008
+    400082: Plane009
     4300000: Box002
     4300002: Object002
+    4300004: Box001
+    4300006: Plane005
+    4300008: Box003
+    4300010: Plane009
     7400000: Take 001
     9500000: //RootNode
     13700000: Box002
     13700002: Object002
+    13700004: Box001
+    13700006: Box003
+    13700008: Plane005
+    13700010: Plane009
   materials:
     importMaterials: 1
     materialName: 0
@@ -131,7 +151,9 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
-      - path: Box002
+      - path: Box001
+        weight: 1
+      - path: Box003
         weight: 1
       - path: mixamorig:Hips
         weight: 1
@@ -199,7 +221,15 @@ ModelImporter:
         weight: 1
       - path: mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder/mixamorig:RightArm/mixamorig:RightForeArm/mixamorig:RightHand/mixamorig:RightHandIndex1/mixamorig:RightHandIndex2/mixamorig:RightHandIndex3/mixamorig:RightHandIndex4
         weight: 1
+      - path: Object001
+        weight: 1
       - path: Object002
+        weight: 1
+      - path: Plane005
+        weight: 1
+      - path: Plane008
+        weight: 1
+      - path: Plane009
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
