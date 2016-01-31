@@ -53,14 +53,15 @@ public class Player : MonoBehaviour
 
 	void OnCollisionEnter (Collision col)
 	{
-		if (col.gameObject.tag == "Altar" & grabbed == true) 
+		if (col.gameObject.tag == "Altar" && grabbed == true && currentSacrifice != null) 
 		{
 			//sacrifced = true;
 			grabbed = false;
-			currentSacrifice.transform.position = new Vector3 (altar.transform.position.x + 2, 3f, altar.transform.position.z);
+			currentSacrifice.transform.GetComponent<Animator>().SetBool("grabbed", false);//= !enabled;
+			currentSacrifice.transform.position = new Vector3 (altar.transform.position.x + 2, 2f, altar.transform.position.z);
 			currentSacrifice.transform.rotation = Quaternion.Euler(-90,90,0);
 			currentSacrifice.transform.parent = null;
-			currentSacrifice.transform.GetComponent<Animator>().enabled = !enabled;
+			//currentSacrifice.transform.GetComponent<Animator>().enabled = !enabled;
 			Invoke ("SacrificeDeath", 2);
 
 			//Destroy (currentSacrifice);
