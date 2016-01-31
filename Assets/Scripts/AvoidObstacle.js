@@ -4,6 +4,8 @@
  var randomNumber : float;
  private var speed : float;// 10.0;
 
+ var animator : Animator;
+
  var wayPoint : Vector3;
  private var dir : Vector3;
  private var dirFull : Vector3;
@@ -17,14 +19,16 @@
 		thisTransform = this.transform;
 		player = GameObject.FindGameObjectWithTag("Player").transform;
 		speed =  Random.Range(7,10);
+		animator = GetComponent("Animator");
+		animator.SetBool("grabbed", false);
  }
 
  function Update ()
  {
  		if (player.GetComponent("Player").grabbed == true && player.GetComponent("Player").currentSacrifice == this.gameObject) 
 		{
-			this.transform.position = new Vector3 (player.transform.position.x, 6, player.transform.position.z + 2.5f);
-			this.transform.rotation = Quaternion.Euler(Vector3(-90,player.transform.rotation.y,0));
+			this.transform.position = new Vector3 (player.transform.position.x, 1, player.transform.position.z + 7f);
+			this.transform.rotation = Quaternion.Euler(Vector3(-90,player.transform.rotation.y * 100,0));
 			//this.transform.eulerAngles = Vector3(-90,90,0);
 			//dir = player.transform.position;
 		}
@@ -120,6 +124,7 @@
 			//caught = true;
 			player.GetComponent("Player").grabbed = true;
 			player.GetComponent("Player").currentSacrifice = this.gameObject;
-			this.transform.GetComponent(Animator).enabled = !enabled;
+			animator.SetBool("grabbed", true);
+			//this.transform.GetComponent(Animator).enabled = !enabled;
 		} 
   }
