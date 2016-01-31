@@ -57,8 +57,10 @@ public class Player : MonoBehaviour
 		{
 			//sacrifced = true;
 			grabbed = false;
-			currentSacrifice.transform.position = new Vector3 (altar.transform.position.x + 2, 2, altar.transform.position.z);
+			currentSacrifice.transform.position = new Vector3 (altar.transform.position.x + 2, 3f, altar.transform.position.z);
 			currentSacrifice.transform.rotation = Quaternion.Euler(-90,90,0);
+			currentSacrifice.transform.parent = null;
+			currentSacrifice.transform.GetComponent<Animator>().enabled = !enabled;
 			Invoke ("SacrificeDeath", 2);
 
 			//Destroy (currentSacrifice);

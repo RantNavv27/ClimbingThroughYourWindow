@@ -27,8 +27,10 @@
  {
  		if (player.GetComponent("Player").grabbed == true && player.GetComponent("Player").currentSacrifice == this.gameObject) 
 		{
-			this.transform.position = new Vector3 (player.transform.position.x, 1, player.transform.position.z + 7f);
-			this.transform.rotation = Quaternion.Euler(Vector3(-90,player.transform.rotation.y * 100,0));
+			this.transform.position = GameObject.Find("spawn").transform.position;
+			this.transform.rotation = GameObject.Find("spawn").transform.rotation;
+			//this.transform.rotation = Quaternion.Euler(Vector3(player.transform.rotation.x * 180,player.transform.rotation.y * 360,player.transform.rotation.z *));
+			this.transform.parent = player.transform;
 			//this.transform.eulerAngles = Vector3(-90,90,0);
 			//dir = player.transform.position;
 		}
