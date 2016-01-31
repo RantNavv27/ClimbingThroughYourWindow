@@ -22,7 +22,8 @@ public class GenerateObjects : MonoBehaviour {
 				}
 			}
 			if (isOverlapped) {
-				Destroy (item);
+				//Destroy (item);
+				item.transform.position = new Vector3(Random.Range(5,55),0.5f,Random.Range(5,55));
 				Debug.Log ("test");
 			}
 

@@ -7,6 +7,11 @@ public class Player : MonoBehaviour
 	float back;
 	float right;
 	float left;
+	float count = 0;
+
+	GameObject currentSacrifice;
+
+	bool grabbed = false;
 
 	void Update ()
 	{
@@ -34,5 +39,18 @@ public class Player : MonoBehaviour
 	transform.Rotate (0, left * back, 0);
 	transform.Rotate (0, right * back, 0);
 
+	transform.position = new Vector3(Mathf.Clamp(transform.position.x, 0.0F, 60.0F), 0, Mathf.Clamp(transform.position.z, 0.0F, 80.0F));
+
+	}
+
+	void OnCollisionEnter (Collision col)
+	{
+		if (col.gameObject.tag == "Altar" & grabbed == true) 
+		{
+			grabbed = false;
+			Destroy (currentSacrifice);
+			count++;
+			GameObject.Find ("/Canvas/Score").GetComponent<UnityEngine.UI.Text> ().text = "Score:" + count;
+		}
 	}
 }

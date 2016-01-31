@@ -1,16 +1,32 @@
 ﻿ public var player : Transform;
  var thisTransform : Transform;
+
  var randomNumber : float;
- var speed : float = 10.0;
+ private var speed : float;// 10.0;
+
  var wayPoint : Vector3;
  private var dir : Vector3;
  private var dirFull : Vector3;
+
+ var caught : boolean;
 
  function Start () 
  {
 		Wanders();
 		thisTransform = this.transform;
 		player = GameObject.FindGameObjectWithTag("Player").transform;
+		speed =  Random.Range(7,10);
+ }
+
+ function Update ()
+ {
+ 		if (caught == true) 
+		{
+			this.transform.position = new Vector3 (player.transform.position.x, 6, player.transform.position.z + 2.5f);
+			this.transform.rotation = Quaternion.Euler(Vector3(-90,player.transform.rotation.y,0));
+			//this.transform.eulerAngles = Vector3(-90,90,0);
+			//dir = player.transform.position;
+		}
  }
  
  function FixedUpdate()
@@ -23,6 +39,8 @@
      		//transform.Rotate(0,randomNumber,0);
 
 	 } else {*/
+	 if(caught == false)
+	 {
 	 dir = (wayPoint - transform.position).normalized;
 	 randomNumber = Random.Range(-5,5);
 	 //}
@@ -83,9 +101,9 @@
      //position
      transform.position += transform.forward * (speed * Time.deltaTime); // 20 is speed
      transform.position.y = 0;
-	transform.position = new Vector3(Mathf.Clamp(transform.position.x, 0.0F, 60.0F), 0, Mathf.Clamp(transform.position.z, 0.0F, 60.0F));
+	 transform.position = new Vector3(Mathf.Clamp(transform.position.x, 0.0F, 60.0F), 0, Mathf.Clamp(transform.position.z, 0.0F, 60.0F));
 
-     
+     }
  }
  function Wanders()
 	{ 		
@@ -93,3 +111,13 @@
 		wayPoint.z = Random.Range (0, 60);
 		wayPoint.y = 0.5f;
 	}
+
+ function OnCollisionEnter (col: Collision) 
+  {
+  		if (col.gameObject.tag == "Player" && player.GetComponent("Player").grabbed == false) 
+  		{
+			caught = true;
+			player.GetComponent("Player").grabbed = true;
+			player.GetComponent("Player").currentSacrifice = this.gameObject;
+		} 
+  }
