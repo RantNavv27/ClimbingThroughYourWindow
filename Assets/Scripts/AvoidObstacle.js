@@ -30,7 +30,7 @@
 			this.transform.position = GameObject.Find("spawn").transform.position;
 			this.transform.rotation = GameObject.Find("spawn").transform.rotation;
 			//this.transform.rotation = Quaternion.Euler(Vector3(player.transform.rotation.x * 180,player.transform.rotation.y * 360,player.transform.rotation.z *));
-			this.transform.parent = player.transform;
+			//this.transform.parent = player.transform;
 			//this.transform.eulerAngles = Vector3(-90,90,0);
 			//dir = player.transform.position;
 		}
